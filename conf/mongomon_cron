@@ -1,0 +1,2 @@
+# mongodb monitor cron 
+* * * * * root (cd /path/to/mongomon/bin/ && python  mongodb_monitor.py  > /dev/null)
