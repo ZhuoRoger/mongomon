@@ -50,7 +50,7 @@ mongomon部署
 
 5 endpoint默认是hostname
 
-![](https://github.com/ZhuoRoger/mongomon/tree/master/misc/screen_demo.png)
+![](https://github.com/ZhuoRoger/mongomon/blob/master/misc/falcon%20screen.jpg)
 
 采集的MongoDB指标
 ----------------------------------------
