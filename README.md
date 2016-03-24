@@ -1,6 +1,6 @@
-#MongoDB performance monitor plugin for Open-Falcon 
-------------------------------------
-------------------------------------
+MongoDB performance monitor plugin for Open-Falcon 
+--------------------------------
+
 功能支持
 ------------------
 
@@ -12,17 +12,25 @@
 监控数据采集原理
 ---------------
 1 存活监控: 包括auth
+
 2 serverStatus
+
 3 replSetGetStatus
+
 4 oplog.rs 
+
 5 mongos
+
 通过cron每分钟采集上报,采集对MongoDB理论无性能影响
 
 环境要求
 ---------------
 操作系统: Linux
+
 Python 2.6
+
 PyYAML > 3.10
+
 python-requests > 0.11
 
 mongomon部署
@@ -41,7 +49,7 @@ mongomon部署
 
 mongomon的部署screen
 --------------------------
-![alt tag](http://mongomon/misc/screen_demo.png)
+![image](https://github.com/ZhuoRoger/mongomon/tree/master/misc/screen_demo.png)
 
 
 采集的MongoDB指标
