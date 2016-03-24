@@ -50,6 +50,9 @@ mongomon部署
 
 5 endpoint默认是hostname
 
+MongoDB falcon screen
+----------
+
 ![](https://github.com/ZhuoRoger/mongomon/blob/master/misc/falcon%20screen.jpg)
 
 采集的MongoDB指标
