@@ -5,8 +5,11 @@ MongoDB performance monitor plugin for Open-Falcon
 ------------------
 
 已测试版本: 支持MongoDB版本2.4,2.6 3.0,3.2, 以及Percona MongoDB3.0
+
 支持存储引擎：MMAPv1, wiredTiger, RocksDB, PerconaFT 存储引擎(部分存储引擎的指标未采集完,可直接代码中添加)
+
 支持结构: standlone, 副本集,分片集群
+
 支持节点：mongod数据节点，配置节点，Primary/Secondary, mongos; 不支持Arbiter节点
 
 监控数据采集原理
@@ -43,14 +46,11 @@ mongomon部署
 
 3 配置crontab, 修改mongomon/conf/mongomon_cron文件中mongomon安装path; cp mongomon_cron /etc/cron.d/ 
 
-4 几分钟后，可从open-falcon的dashboard中查看redis metric
+4 几分钟后，可从open-falcon的dashboard中查看MongoDB metric
 
 5 endpoint默认是hostname
 
-mongomon的部署screen
---------------------------
-![image](https://github.com/ZhuoRoger/mongomon/tree/master/misc/screen_demo.png)
-
+![](https://github.com/ZhuoRoger/mongomon/tree/master/misc/screen_demo.png)
 
 采集的MongoDB指标
 ----------------------------------------
