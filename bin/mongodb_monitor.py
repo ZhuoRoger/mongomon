@@ -66,8 +66,6 @@ mongodb_counter_metric = ["asserts_msg",
                 "wt_bm_blocks_written"]
 
 
-mongodb_hostname = socket.gethostname()
-
 f=open("../conf/mongomon.conf")
 y = yaml.load(f)
 f.close()
@@ -79,11 +77,11 @@ for mongodb_ins in mongodb_items:
 	
         mongodb_tag = "mongo=" + str(mongodb_ins["port"])
 
-        err,conn = mongodb_monitor.mongodb_connect(host=mongodb_hostname,port=mongodb_ins["port"], user=mongodb_ins["user"], password=mongodb_ins["password"])
+        err,conn = mongodb_monitor.mongodb_connect(host=mongodb_ins["ip"],port=mongodb_ins["port"], user=mongodb_ins["user"], password=mongodb_ins["password"])
  
 	mongodb_upate_list = [] 
         if err != 0:
-		key_item_dict =  {"endpoint": mongodb_hostname, "metric": "mongo_local_alive", "tags":mongodb_tag , "timestamp":ts, "value": 0, "step": 60, "counterType": "GAUGE"}
+		key_item_dict =  {"endpoint": mongodb_ins["ip"], "metric": "mongo_local_alive", "tags":mongodb_tag , "timestamp":ts, "value": 0, "step": 60, "counterType": "GAUGE"}
 		mongodb_upate_list.append(key_item_dict)
 		r = requests.post(falcon_client,data=json.dumps(mongodb_upate_list))
 		continue   #The instance is dead. upload the "mongo_alive_local=0" key, then continue.
@@ -94,9 +92,9 @@ for mongodb_ins in mongodb_items:
         for mongodb_metric in mongodb_dict_keys:
 
                 if mongodb_metric in mongodb_counter_metric :
-                        key_item_dict = {"endpoint": mongodb_hostname, "metric": mongodb_metric, "tags":mongodb_tag , "timestamp":ts, "value": mongodb_dict[mongodb_metric], "step": 60, "counterType": "COUNTER"}
+                        key_item_dict = {"endpoint": mongodb_ins["ip"], "metric": mongodb_metric, "tags":mongodb_tag , "timestamp":ts, "value": mongodb_dict[mongodb_metric], "step": 60, "counterType": "COUNTER"}
                 else:
-                        key_item_dict =  {"endpoint": mongodb_hostname, "metric": mongodb_metric, "tags":mongodb_tag , "timestamp":ts, "value": mongodb_dict[mongodb_metric], "step": 60, "counterType": "GAUGE"}
+                        key_item_dict =  {"endpoint": mongodb_ins["ip"], "metric": mongodb_metric, "tags":mongodb_tag , "timestamp":ts, "value": mongodb_dict[mongodb_metric], "step": 60, "counterType": "GAUGE"}
 
                 mongodb_upate_list.append(key_item_dict)
 	r = requests.post(falcon_client,data=json.dumps(mongodb_upate_list))
