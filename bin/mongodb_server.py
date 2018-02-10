@@ -277,14 +277,14 @@ class mongodbMonitor(object):
         for repl_member in repl_status_members:
             if repl_member.has_key("self") and repl_member["self"]:
                 repl_status_dict["repl_health"] = repl_member["health"]
-                repl_status_dict["repl_optime"] = repl_member["optime"]["t"]
+                repl_status_dict["repl_optime"] = repl_member["optime"]["ts"].time
                 if repl_member.has_key("repl_electionTime"):
-                    repl_status_dict["repl_electionTime"] = repl_member["electionTime"]["t"]
+                    repl_status_dict["repl_electionTime"] = repl_member["electionTime"].time
                 if repl_member.has_key("repl_configVersion"):
                     repl_status_dict["repl_configVersion"] = repl_member["configVersion"]
-                myself_optime = repl_member["optime"]["t"]
+                myself_optime = repl_member["optime"]["ts"].time
             if (replStatus["myState"] == 2 and repl_member["state"] == 1 ):  # CONDARY ,get repl lag
-                master_optime = repl_member["optime"]["t"]
+                master_optime = repl_member["optime"]["ts"].time
         if replStatus["myState"] == 2 :
 
             repl_status_dict["repl_lag"] = master_optime - myself_optime
